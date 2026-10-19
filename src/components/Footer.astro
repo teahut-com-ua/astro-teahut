@@ -1,0 +1,45 @@
+---
+import Social from "./Social.astro";
+import ThemePicker from "./ThemePicker.astro";
+
+const today = new Date();
+---
+
+<footer>
+	<section class="footer-theme-container">
+		<ThemePicker />
+	</section>
+	<section class="footer-social-container">
+		<Social />
+	</section>
+	<p class="copyright">&copy; 2014-{today.getFullYear()} TEAHUT.COM.UA. All rights reserved.</p>
+</footer>
+
+<style is:global>
+	footer {
+		padding: 2em 1em 6em 1em;
+		background: linear-gradient(light-dark(var(--footer-light), var(--footer-dark))) no-repeat;
+		color: var(--gray-light);
+		text-align: center;
+  
+		@media(min-width: 720px) {
+			padding: 2em 1em 2em 1em;
+		}
+	}
+	.copyright {
+		margin: 3rem auto 0;
+	}
+	.footer-theme-container {
+		display: flex;
+		justify-content: center;
+	}
+	.footer-social-container {
+		padding: 2rem 0 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		gap: 2rem;
+		font-size: 1rem;
+	}
+</style>

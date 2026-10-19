@@ -1,0 +1,315 @@
+---
+import { Image } from "astro:assets";
+import logo from '../../public/logo.png';
+import HeaderLink from "./HeaderLink.astro";
+import { Icon } from "astro-icon/components";
+import PageFind from "./PageFind.astro";
+
+const { title = "Майстерня" } = Astro.props;
+---
+
+<header class="main-header" {title} >
+	<a href="/">
+		<Image class="logo" src={logo} alt="Logo" />
+	</a>
+	<h2 class="header-menu-title">
+		{title}
+	</h2>
+	<nav class="navigation-bar" aria-label="Navigation menu">
+		<button popovertarget="home-page" style="anchor-name: --anchor-button-home;">
+			<Icon class="icon" name="hut" size={36} />
+		</button>
+		<div id="home-page" class="tooltip" popover style="position-anchor: --anchor-button-home;">
+			<ul>
+				<li>
+					<HeaderLink href="/">
+						ХАТИНКА
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink href="/our-tradition">
+						- наша Традиція
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink href="/guiding-principles-of-this-hut">
+						- керівні засади цієї Хатинки
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink href="/about">
+						- про нас
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink href="/about-our-teashop">
+						- про нашу крамничку
+					</HeaderLink>
+				</li>
+			</ul>
+		</div>
+		<button popovertarget="tea-page" style="anchor-name: --anchor-button-tea;">
+			<Icon class="icon" name="teapot-leaves" size={36} />
+		</button>
+		<div id="tea-page" class="tooltip" popover style="position-anchor: --anchor-button-tea;">
+			<ul>
+				<li>
+					<HeaderLink href="/tea">
+						НАШІ ЧАЇ
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/categories/shengcha'>
+						- шен пуери
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/categories/heicha'>
+						- шу пуери й хейча
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/categories/hongcha'>
+						- червоні чаї
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/categories/wulong&gaba'>
+						- вулони й ґаба
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/categories/baicha&lucha'>
+						- білі й зелені
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/categories/japanese'>
+						- японські
+					</HeaderLink>
+				</li>
+				<li>
+					<HeaderLink class="" href='/teaware'>
+						ЧАЙНЕ НАЧИННЯ
+					</HeaderLink>
+				</li>
+				<li>
+					<HeaderLink class="menu-link" href='/tags'>
+						Позначки чаїв
+					</HeaderLink>
+				</li>
+			</ul>
+		</div>
+		<button popovertarget="blog-page" style="anchor-name: --anchor-button-articles;">
+			<Icon class="icon" name="books" size={36} />
+		</button>
+		<div id="blog-page" class="tooltip" popover style="position-anchor: --anchor-button-articles;">
+			<ul>
+				<li>
+					<HeaderLink href="/articles">
+						ЧИТАЛЬНЯ
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/articles/gongfuchatips'>
+						- поради з ґонфу ча
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/articles/gongfuteapot'>
+						- чайник ґонфу
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/articles/brewingtips'>
+						- поради щодо заварювання
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/articles/teaandseasons'>
+						- про чай і сезони
+					</HeaderLink>
+				</li>
+				<li class="sublink">
+					<HeaderLink class="menu-link" href='/articles/questionsandanswers'>
+						- питання і відповіді
+					</HeaderLink>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="search-button">
+		<PageFind />
+	</div>
+</header>
+
+<style>	
+	header.main-header {
+		grid-area: header;
+		margin: 0 0 1rem;
+		padding: 0.5em 0.7em;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background: light-dark(var(--active-green), var(--footer));
+		box-shadow:  0px 2px 8px rgba(0,0,0, 0.5);
+
+		@media (min-width: 720px) {
+			margin: 0 0 2rem;
+			padding: 0;
+			height: 100svh;
+			display: grid;
+			grid-template-columns: 5rem;
+			grid-template-rows: 5rem 1fr 5rem;
+			grid-template-areas: 
+			"logo"
+			"menu"
+			"search-button";
+			justify-items: center;
+			position: fixed;
+		}
+	}
+
+	.logo {
+		grid-area: logo;
+		display: block;
+		width: 4rem;
+        max-width: 100%;
+        aspect-ratio: 1 / 1;
+		padding: 0.3rem;
+		background-color: oklch(85% 0.063 96.44);
+		border-radius: 100vw;
+		border: 1px solid rgb(var(--black));
+	}
+	h2.header-menu-title {
+		margin: 0;
+		font-size: 1.8em;
+		text-align: end;
+		color: oklch(85% 0.063 96.44);
+
+		@media (min-width: 720px) {
+			display: none;
+		}
+	}
+	.navigation-bar {
+		display: none;
+
+		@media (min-width: 720px) {
+			grid-area: menu;
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+			background-color: light-dark(var(--active-green), var(--footer));
+			place-items: center;
+			justify-content: space-between;
+		}
+	}
+	button {
+		height: 3.6rem;
+        width: 100%;
+		background-color: transparent;
+		color: light-dark(oklch(85% 0.063 96.44), var(--foreground-dark));
+		border: 0;
+		z-index: 2;
+		cursor: pointer;
+	}
+
+	.tooltip {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		position-area: top;
+		background-color: var(--header);
+		border: 0;
+		overflow: visible;
+		z-index: -1;
+
+		@media (min-width: 720px) {
+			position-area: right;
+			width: fit-content;
+			background-color: light-dark(var(--active-green), var(--footer));
+			border-radius: 0 1rem 1rem 0;
+	
+			&::before, &::after {
+				position: absolute;
+				content: '';
+				width: 18px;
+				aspect-ratio: 1;
+			}
+	
+			&::before {
+				left: 0;
+				top: -18px;
+				background: radial-gradient(
+					circle 18px at top right,
+					#0000 98%, light-dark(var(--active-green), var(--footer))
+				);
+			}
+	
+			&::after {
+				left: 0;
+				bottom: -18px;
+				background: radial-gradient(
+					circle 18px at bottom right,
+					#0000 98%, light-dark(var(--active-green), var(--footer))
+				);
+			}
+		}
+
+		a {
+			color: var(--foreground-dark);
+			text-decoration: none;
+            line-height: 2.7rem;
+		}
+
+		a:hover {
+			color: light-dark(var(--foreground), var(--active));
+		}
+
+		ul {
+			list-style: none;
+			padding: 1rem;
+		}
+
+        li {
+            padding-left: 1rem;
+
+			&.sublink {
+				margin-left: 1rem;
+			}
+        }
+
+        li:has(a.active) {
+			border-top: 0.5px solid var(--grey);
+			border-left: 0.5px solid var(--grey);
+			border-right: 2px solid light-dark(var(--green), rgb(0, 48, 0));
+			border-bottom: 2px solid light-dark(var(--green), rgb(0, 48, 0));
+			border-radius: 9px;
+            color: light-dark(var(--active), var(--background));
+        }
+
+	}
+
+	[popover] {
+		translate: -360px 0;
+		transition: translate 0.5s ease-out, display 0.5s ease-out allow-discrete;
+
+		&:popover-open {
+            translate: 1rem 0;
+        }
+	}
+
+	@starting-style {
+		[popover]:popover-open {
+            translate: -360px 0;
+        }
+	}
+	.search-button {
+		display: grid;
+		place-content: center;
+		
+		@media (min-width: 720px) {
+			grid-area: search-button;
+		}
+	}
+</style>
