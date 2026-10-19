@@ -159,8 +159,8 @@ const { title = "Майстерня" } = Astro.props;
 			padding: 0;
 			height: 100svh;
 			display: grid;
-			grid-template-columns: 5rem;
-			grid-template-rows: 5rem 1fr 5rem;
+			grid-template-columns: 4rem;
+			grid-template-rows: 4rem 1fr 4rem;
 			grid-template-areas: 
 			"logo"
 			"menu"
@@ -173,7 +173,7 @@ const { title = "Майстерня" } = Astro.props;
 	.logo {
 		grid-area: logo;
 		display: block;
-		width: 4rem;
+		width: 3rem;
         max-width: 100%;
         aspect-ratio: 1 / 1;
 		padding: 0.3rem;
@@ -295,7 +295,7 @@ const { title = "Майстерня" } = Astro.props;
 		transition: translate 0.5s ease-out, display 0.5s ease-out allow-discrete;
 
 		&:popover-open {
-            translate: 1rem 0;
+            translate: 0.5rem 0;
         }
 	}
 
